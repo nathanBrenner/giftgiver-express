@@ -1,14 +1,17 @@
 const express = require('express')
+const controller = require('./user.controller')
 
 const router = express.Router()
 
+router.param('id', controller.findByParam)
+
 router.route('/')
-	.get((req, res) => res.json({val: 'get users'}))
-	.post((req, res) => res.json({val: 'post user'}))
+	.get(controller.getAll)
+	.post(controller.createOne)
 
 router.route('/:id')
-	.get((req, res) => res.json({val: 'get user'}))
-	.put((req, res) => res.json({val: 'put user'}))
-	.delete((req, res) => res.json({val: 'delete user'}))
+	.get(controller.getOne)
+	.put(controller.updateOne)
+	.delete(controller.deleteOne)
 
 module.exports = router

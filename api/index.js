@@ -1,6 +1,6 @@
 const express = require('express')
 const userRouter = require('./resources/user/user.router')
-
+const apiErrorHandler = require('./modules/errorHandler')
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 })
 
 router.use('/user', userRouter)
+router.use(apiErrorHandler)
 
 module.exports = router
