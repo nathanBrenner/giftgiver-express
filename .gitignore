@@ -1,7 +1,6 @@
 # Logs
 npm-debug.log*
 
-
 # Dependency directories
 node_modules/
 
@@ -25,3 +24,5 @@ typings/
 
 # next.js build output
 .next
+
+config/dev.js

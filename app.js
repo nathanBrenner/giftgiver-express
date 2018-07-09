@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var apiRouter = require('./api/index');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var connect = require('./db');
 var mongoose = require('mongoose');
 
@@ -31,7 +30,6 @@ db.once('open', () => {
 connect()
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler

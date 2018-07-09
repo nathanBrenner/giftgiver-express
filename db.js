@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
 mongoose.Primise = global.Promise
+const config = require('./config/index')
 
 const connect = () => {
-	return mongoose.connect('mongodb://localhost:27017/giftgiver', {
+	return mongoose.connect(config.db.url, {
 		useNewUrlParser: true
 	})
 }
