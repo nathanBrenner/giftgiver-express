@@ -1,0 +1,30 @@
+# comment, but it's the documentation in GraphIql
+type User {
+	id: ID!
+	email: String!
+	firstName: String
+	lastName: String
+	spouse: User
+	wishList: [String]
+}
+
+input UpdatedUser {
+	id: ID!
+	email: String
+	firstName: String
+	lastName: String
+	spouse: UpdateUser
+	wishList: [String]
+}
+
+input NewUser {
+	email: String!
+	firstName: String
+	lastName: String
+	spouse: NewUser
+	wishList: [String]
+}
+
+type Query {
+	getUser: User!
+}
