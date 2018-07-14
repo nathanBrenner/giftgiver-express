@@ -26,8 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', restRouter);
-// app.use('/graphql', express.json(), graphQLRouter);
-// app.use('/docs', graphiqlExpress({endpointURL: '/graphql'}));
+app.use('/graphql', express.json(), graphQLRouter);
+app.use('/docs', graphiqlExpress({endpointURL: '/graphql'}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

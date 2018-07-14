@@ -1,7 +1,7 @@
 const { makeExecutableSchema } = require("graphql-tools");
 const merge = require("lodash.merge");
 const { graphqlExpress } = require("apollo-server-express");
-const { userType, userResolvers } = require("./resources/user");
+const { userType, userResolvers } = require("./resources");
 
 const baseSchema = `
   schema {
@@ -13,22 +13,21 @@ const baseSchema = `
 
 // var resolvers = merge({}, userResolvers);
 
-var typeDefs = [`
-type Query {
-  hello: String
-}
+// var typeDefs = [`
+// type Query {
+//   hello: String
+// }
 
-schema {
-  query: Query
-}`];
+// schema {
+//   query: Query
+// }`];
 
-var resolvers = {
-  Query: {
-    hello(root) {
-      return 'world';
-    }
-  }
-};
+var typeDefs = [baseSchema, userType];
+
+var resolvers = merge(
+	{},
+	userResolvers
+);
 
 var schema = makeExecutableSchema({ typeDefs, resolvers });
 
