@@ -1,13 +1,7 @@
-const express = require('express')
-const userRouter = require('./resources/user/user.router')
-const apiErrorHandler = require('./modules/errorHandler')
-const router = express.Router()
+const restRouter = require('./restRouter')
+const graphQLRouter = require('./graphQLRouter')
 
-router.get('/', (req, res) => {
-	res.json({message: 'get api now'})
-})
-
-router.use('/user', userRouter)
-router.use(apiErrorHandler)
-
-module.exports = router
+module.exports = { 
+	restRouter,
+	graphQLRouter,
+}

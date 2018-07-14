@@ -2,4 +2,81 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
+  h2 API endpoints
+  .apiDocs
+    p method
+    p request
+    p description
+    p response
+
+    p GET
+    p :3000/
+    p documentation for this api service
+    p this html page
+    
+    p GET 
+    p :3000/api
+    p root of rest endpoints
+    p {"message":"get api now"}
+    
+    p GET
+    p :3000/api/user
+    p get all users
+    p json with all fields on User model
+
+    p POST
+    p :3000/api/user
+    p create user
+    p User
+
+    p GET
+    p :3000/api/user/:id
+    p get user by id
+    p User
+
+    p PUT
+    p :3000/api/user/:id
+    p update user
+    p User
+
+    p DELETE
+    p :3000/api/user/:id
+    p delete user from database
+    p
+
+    p GET
+    p :3000/graqhql
+    p graphql endpoints
+    p
+
+    p GET
+    p :3000/docs
+    p documentation for graphql endpoint with GraphiQL
+    p
+
+  h2 User model
+  .userModel
+    p property
+    p type
+    p description
+
+    p email
+    p String
+    p required, unique
+
+    p firstName
+    p String
+    p optional
+
+    p lastName
+    p String
+    p optional
+
+    p spouse
+    p User
+    p the husband or wife of another existing user
+
+    p wishList
+    p array of Strings
+    p a list of items the user wants

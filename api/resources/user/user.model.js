@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const fs = require('fs')
-const userSchema = fs.readFile('./user.graphql')
+
 const schema = {
 	email: {
 		type: String,
