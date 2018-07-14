@@ -9,19 +9,6 @@ const baseSchema = `
   }
 `;
 
-// var typeDefs = [baseSchema, userType];
-
-// var resolvers = merge({}, userResolvers);
-
-// var typeDefs = [`
-// type Query {
-//   hello: String
-// }
-
-// schema {
-//   query: Query
-// }`];
-
 var typeDefs = [baseSchema, userType];
 
 var resolvers = merge(
@@ -34,5 +21,4 @@ var schema = makeExecutableSchema({ typeDefs, resolvers });
 module.exports = graphqlExpress(req => ({
 	schema,
 	req,
-	user: req.user
 }));

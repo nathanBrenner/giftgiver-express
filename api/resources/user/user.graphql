@@ -26,5 +26,7 @@ input NewUser {
 }
 
 type Query {
-  getMe: User!
+  getMe: User!,
+	User(id: ID!): User!,
+	Users: [User]!
 }
