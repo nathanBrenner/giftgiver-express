@@ -13,7 +13,7 @@ input UpdatedUser {
 	email: String
 	firstName: String
 	lastName: String
-	spouse: UpdatedUser
+	spouse: ID
 	wishList: [String]
 }
 
@@ -21,7 +21,7 @@ input NewUser {
 	email: String!
 	firstName: String
 	lastName: String
-	spouse: NewUser
+	spouse: ID
 	wishList: [String]
 }
 
@@ -32,7 +32,7 @@ type Query {
 }
 
 type Mutation {
-	addUser(input: NewUser): User!
+	User(input: NewUser): User!
 	updateUser(input: UpdatedUser): User!
 	removeUser(id: ID!): User!
 }

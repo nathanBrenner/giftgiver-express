@@ -29,9 +29,16 @@ const userResolvers = {
 		Users: getUsers,
 	},
 	Mutation: {
-		addUser,
+		User: addUser,
 		updateUser,
 		removeUser,
+	},
+
+	User: {
+		async spouse(user) {
+			const populated = await user.populate('spouse').execPopulate()
+			return populated.spouse;
+		}
 	}
 };
 
