@@ -30,3 +30,9 @@ type Query {
 	User(id: ID!): User!,
 	Users: [User]!
 }
+
+type Mutation {
+	addUser(input: NewUser): User!
+	updateUser(input: UpdatedUser): User!
+	removeUser(id: ID!): User!
+}

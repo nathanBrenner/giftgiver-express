@@ -5,7 +5,8 @@ const { userType, userResolvers } = require("./resources");
 
 const baseSchema = `
   schema {
-    query: Query
+		query: Query
+		mutation: Mutation
   }
 `;
 
