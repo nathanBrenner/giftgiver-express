@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const indexRouter = require('./home');
+const loginRouter = require('./login');
+const signupRouter = require('./signup');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'GiftGiver API' });
-});
-
-module.exports = router;
+module.exports = {
+	indexRouter,
+	loginRouter,
+	signupRouter,
+}

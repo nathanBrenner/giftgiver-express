@@ -1,33 +1,29 @@
 const createError = require("http-errors");
 const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
 const mongoose = require("mongoose");
 const { graphiqlExpress } = require("apollo-server-express");
 
-const indexRouter = require("./routes/index");
+const { indexRouter, loginRouter, signupRouter } = require("./routes/index");
+const config = require("./config/index");
 const connect = require("./db");
 const { restRouter, graphQLRouter } = require("./api/index");
-const config = require("./config/index");
-const db = mongoose.connection;
-
+const setGlobalMiddleware = require('./middleware');
 const app = express();
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
+setGlobalMiddleware(app);
 
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+	console.log(`mongodb connected, server started on port ${config.port}`);
+});
+connect();
 
 app.use("/", indexRouter);
 app.post("/login", (req, res) => {
 	res.json({ login: true });
 });
+app.use('/signup', signupRouter);
 app.use("/api", restRouter);
 app.use("/graphql", express.json(), graphQLRouter);
 app.use("/docs", graphiqlExpress({ endpointURL: "/graphql" }));
@@ -47,11 +43,5 @@ app.use((err, req, res, next) => {
 	res.status(err.status || 500);
 	res.render("error");
 });
-
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-	console.log(`mongodb connected, server started on port ${config.port}`);
-});
-connect();
 
 module.exports = app;

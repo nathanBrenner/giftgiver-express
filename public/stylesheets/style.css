@@ -30,3 +30,14 @@ a {
 .userModel {
   grid-template-columns: auto auto 1fr;
 }
+
+/** signup page **/
+label {
+  display: block;
+}
+
+.signupForm {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 100px;
+}
