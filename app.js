@@ -1,13 +1,16 @@
 const createError = require("http-errors");
 const express = require("express");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("express-session");
 const { graphiqlExpress } = require("apollo-server-express");
 
-const { indexRouter, loginRouter, signupRouter } = require("./routes/index");
 const config = require("./config/index");
 const connect = require("./db");
-const { restRouter, graphQLRouter } = require("./api/index");
 const setGlobalMiddleware = require('./middleware');
+const { restRouter, graphQLRouter } = require("./api/index");
+const index = require("./routes/index");
+
 const app = express();
 
 setGlobalMiddleware(app);
@@ -19,11 +22,16 @@ db.once("open", () => {
 });
 connect();
 
-app.use("/", indexRouter);
-app.post("/login", (req, res) => {
-	res.json({ login: true });
-});
-app.use('/signup', signupRouter);
+require('./api/modules/passport')(passport)
+app.use(
+	session({ secret: "henryjames", resave: false, saveUninitialized: false })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/", index)(app, passport);
+// require('./routes/index')(app, passport);
+
 app.use("/api", restRouter);
 app.use("/graphql", express.json(), graphQLRouter);
 app.use("/docs", graphiqlExpress({ endpointURL: "/graphql" }));

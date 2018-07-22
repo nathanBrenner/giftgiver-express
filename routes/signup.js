@@ -1,12 +1,14 @@
-const express = require("express");
-const router = express.Router();
+module.exports = function (app, passport) {
+	const express = require("express");
+	const router = express.Router();
 
-router.get("/", (req, res) =>
-	res.render("signup", { title: "GiftGiver User Registration" })
-);
+	router.get("/", (req, res) =>
+		res.render("signup", { title: "GiftGiver User Registration" })
+	);
 
-router.post("/", (req, res) =>
-	res.render("profile", { title: "Profile" })
-);
+	router.post("/", (req, res) =>
+		res.render("profile", { title: "Profile" })
+	);
 
-module.exports = router;
+	return router;
+}

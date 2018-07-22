@@ -29,5 +29,4 @@ switch (env) {
     envConfig = require('./dev')
 }
 
-
 module.exports = merge(baseConfig, envConfig)

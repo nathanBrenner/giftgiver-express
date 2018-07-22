@@ -16,9 +16,10 @@ module.exports = function (app) {
 	app.use(express.static(path.join(__dirname, "public")));
 
 	// required for passport
-	app.use(
-		session({ secret: "henryjames", resave: false, saveUninitialized: false })
-	);
-	app.use(passport.initialize());
-	app.use(passport.session());
+	// require('./api/modules/passport')(passport)
+	// app.use(
+	// 	session({ secret: "henryjames", resave: false, saveUninitialized: false })
+	// );
+	// app.use(passport.initialize());
+	// app.use(passport.session());
 }
